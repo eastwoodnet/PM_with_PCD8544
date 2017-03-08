@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "U8glib.h"
+#include "U8glib.h" // you need download this U8glib first
 #include <dht11.h>
 
 #define DHT11PIN 3
@@ -13,7 +13,7 @@ int PM2_5Value = 0;       //define PM2.5 value of the air detector module
 int PM10Value = 0;       //define PM10 value of the air detector module
 dht11 DHT11;
 
-U8GLIB_PCD8544 u8g(13, 11, 10, 9, 8);  // CLK=8, DIN=4, CE=7, DC=5, RST=6 ,you can change it from U8glib
+U8GLIB_PCD8544 u8g(13, 11, 10, 9, 8);  // CLK=8, DIN=4, CE=7, DC=5, RST=6 ,you can change it form U8glib
 
 
 void draw(void) {
@@ -21,7 +21,7 @@ void draw(void) {
   u8g.drawStr(0, 8, "T: ");  // put string of display at position X, Y
   u8g.setPrintPos(15, 8);  // set position
   u8g.print(DHT11.temperature, 1);  // display temperature from DHT11
-  u8g.drawStr(27, 8, "°C"); // can't display degree ,but maybe change font can display
+  u8g.drawStr(27, 8, "°C"); // can't display degree ,but maybe change font can display it
   u8g.drawStr(47, 8, "H: ");
   u8g.setPrintPos(60, 8);
   u8g.print(DHT11.humidity, 1);  // display humidity from DHT11
@@ -42,7 +42,7 @@ void draw(void) {
 
 void setup(void) {
   analogWrite(backlight_pin, 50);  /* Set the Backlight intensity */
-  Serial.begin(9600);   //use serial0
+  Serial.begin(9600);   //use serial0, if you like,you can use softserial 
   Serial.setTimeout(1500);    //set the Timeout to 1500ms, longer than the data transmission periodic time of the sensor
 }
 
